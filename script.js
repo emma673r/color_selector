@@ -145,11 +145,6 @@ function rgbToHSL(rgbObj) {
   console.log(hslObj);
 
   hslValue.textContent = "hsl: " + hslObj.h + "% " + hslObj.s + "% " + hslObj.l + "%";
-
-  // console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
-
-  let hslObj = { h, s, l };
-  showHSL(hslObj);
 }
 
 function showHSL(hslObj) {
