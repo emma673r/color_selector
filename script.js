@@ -79,7 +79,7 @@ function hexToRGB(hexValue) {
   console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
 
   let rgbObj = { r, g, b };
-  rgbValue.textContent = `rgb(${rgbObj.r}, ${rgbObj.r}, ${rgbObj.r})`;
+  rgbValue.textContent = `rgb(${rgbObj.r}, ${rgbObj.g}, ${rgbObj.b})`;
 
   rgbToHSL(rgbObj);
 }
