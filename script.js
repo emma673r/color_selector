@@ -138,9 +138,5 @@ function rgbToHSL(rgbObj) {
   let hslObj = { h, s, l };
   console.log(hslObj);
 
-  hslValue.textContent = "hsl: " + hslObj.h + "% " + hslObj.s + "% " + hslObj.l + "%";
-}
-
-function showHSL(hslObj) {
-  HTML.hslValue.textContent = "hsl: " + hslObj.h.toFixed(0) + "%. " + hslObj.s.toFixed(0) + "%. " + hslObj.l.toFixed(0) + "%";
+  hslValue.textContent = "hsl: " + hslObj.h + "° " + hslObj.s + "% " + hslObj.l + "%";
 }
