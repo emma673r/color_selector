@@ -13,14 +13,13 @@ const hexValue = document.querySelector(".hex");
 const rgbValue = document.querySelector(".rgb");
 const hslValue = document.querySelector(".hsl");
 
-
 let r;
 let g;
 let b;
 
 // start
 function start() {
-//   console.log("start");
+  //   console.log("start");
 
   hexValue.textContent = ``;
   rgbValue.textContent = ``;
@@ -30,7 +29,7 @@ function start() {
 }
 
 function displayColorInColorBox() {
-//   console.log(`displayColorInColorBox`);
+  //   console.log(`displayColorInColorBox`);
   colorBox.style.backgroundColor = input.value;
   h1.style.color = input.value;
   showHex(hexValue);
@@ -64,26 +63,22 @@ function hexToRGB(hexValue) {
 }
 
 function hexToRGB(hexValue) {
-//   console.log("hexToRGB");
+  //   console.log("hexToRGB");
   console.log(hexValue);
 
-    r = hexValue.substring(1, 3).toString();
-    g = hexValue.substring(3, 5).toString();
-    b = hexValue.substring(5).toString();
+  r = hexValue.substring(1, 3).toString();
+  g = hexValue.substring(3, 5).toString();
+  b = hexValue.substring(5).toString();
 
   console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
 
-    r = parseInt(r, 16);
-    g = parseInt(g, 16);
-    b = parseInt(b, 16);
+  r = parseInt(r, 16);
+  g = parseInt(g, 16);
+  b = parseInt(b, 16);
 
   console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
 
-//   let rgbObj = { r, g, b };
-//   showRGB(rgbObj);
-}
-
-function showRGB(rgbObj) {
+  let rgbObj = { r, g, b };
   HTML.rgbValue.textContent = `rgb(${rgbObj.r}, ${rgbObj.r}, ${rgbObj.r})`;
 
   rgbToHSL(rgbObj);
@@ -132,7 +127,6 @@ function rgbToHSL(rgbObj) {
   // multiply s and l by 100 to get the value in percent, rather than [0,1]
   s *= 100;
   l *= 100;
-
 
   console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
   //   *** end pasted code
