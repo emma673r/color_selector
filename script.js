@@ -13,13 +13,14 @@ const hexValue = document.querySelector(".hex");
 const rgbValue = document.querySelector(".rgb");
 const hslValue = document.querySelector(".hsl");
 
+
 let r;
 let g;
 let b;
 
 // start
 function start() {
-  //   console.log("start");
+//   console.log("start");
 
   hexValue.textContent = ``;
   rgbValue.textContent = ``;
@@ -29,7 +30,7 @@ function start() {
 }
 
 function displayColorInColorBox() {
-  //   console.log(`displayColorInColorBox`);
+//   console.log(`displayColorInColorBox`);
   colorBox.style.backgroundColor = input.value;
   h1.style.color = input.value;
   showHex(hexValue);
@@ -60,6 +61,31 @@ function hexToRGB(hexValue) {
 
   let rgbObj = { r, g, b };
   rgbValue.textContent = `rgb(${rgbObj.r}, ${rgbObj.g}, ${rgbObj.b})`;
+}
+
+function hexToRGB(hexValue) {
+//   console.log("hexToRGB");
+  console.log(hexValue);
+
+    r = hexValue.substring(1, 3).toString();
+    g = hexValue.substring(3, 5).toString();
+    b = hexValue.substring(5).toString();
+
+  console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
+
+    r = parseInt(r, 16);
+    g = parseInt(g, 16);
+    b = parseInt(b, 16);
+
+  console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
+
+//   let rgbObj = { r, g, b };
+//   showRGB(rgbObj);
+}
+
+function showRGB(rgbObj) {
+  HTML.rgbValue.textContent = `rgb(${rgbObj.r}, ${rgbObj.r}, ${rgbObj.r})`;
+
   rgbToHSL(rgbObj);
 }
 
@@ -71,6 +97,7 @@ function rgbToHSL(rgbObj) {
   let b = rgbObj.b;
 
   //   *** paste code
+
   r /= 255;
   g /= 255;
   b /= 255;
@@ -106,6 +133,7 @@ function rgbToHSL(rgbObj) {
   s *= 100;
   l *= 100;
 
+
   console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
   //   *** end pasted code
 
@@ -117,4 +145,13 @@ function rgbToHSL(rgbObj) {
   console.log(hslObj);
 
   hslValue.textContent = "hsl: " + hslObj.h + "% " + hslObj.s + "% " + hslObj.l + "%";
+
+  // console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
+
+  let hslObj = { h, s, l };
+  showHSL(hslObj);
+}
+
+function showHSL(hslObj) {
+  HTML.hslValue.textContent = "hsl: " + hslObj.h.toFixed(0) + "%. " + hslObj.s.toFixed(0) + "%. " + hslObj.l.toFixed(0) + "%";
 }
