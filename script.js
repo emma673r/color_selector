@@ -1,5 +1,23 @@
 "use strict";
 
+// ********************************* ASSIGNMENT *********************************************
+
+//! You should have separate functions for at least:
+// blue is DONE
+
+//*? Getting a selected color from the user
+//*? Showing a selected color (possibly a delegator for the following function calls)
+//*? Showing the color as a colored box in CSS
+//*? Showing the color as hex
+//*? Showing the color as RGB
+//*? Showing the color as HSL
+//*? Converting hex to RGB
+//*? Converting RGB to CSS usable string, like rgb(100, 123, 192);
+//*? Converting RGB to hex
+//*? Converting RGB to HSL
+
+// ******************************************************************************************
+
 window.addEventListener("DOMContentLoaded", start);
 
 // all const
@@ -17,6 +35,8 @@ let r;
 let g;
 let b;
 
+// *CONTROLLER
+
 // start
 function start() {
   //   console.log("start");
@@ -25,67 +45,51 @@ function start() {
   rgbValue.textContent = ``;
   hslValue.textContent = ``;
 
-  input.addEventListener("input", displayColorInColorBox);
+  input.addEventListener("input", getInput);
 }
 
-function displayColorInColorBox() {
-  //   console.log(`displayColorInColorBox`);
-  colorBox.style.backgroundColor = input.value;
-  h1.style.color = input.value;
-  showHex(hexValue);
+function getInput() {
+  let hex = input.value;
+
+  displayColorInColorBox(hex);
+  showHex(hex);
+  convertHexToRGB(hex);
+
+  return hex;
 }
 
-function showHex(hexValue) {
-  hexValue.textContent = input.value.toUpperCase();
-  hexValue = hexValue.textContent;
-  //   console.log(hexValue);
-  hexToRGB(hexValue);
-}
+// *MODEL
 
-function hexToRGB(hexValue) {
-  //   console.log("hexToRGB");
-  console.log(hexValue);
-
-  r = hexValue.substring(1, 3).toString();
-  g = hexValue.substring(3, 5).toString();
-  b = hexValue.substring(5).toString();
-
-  console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
+function convertHexToRGB(hex) {
+  // console.log(`convertHexToRGB`);
+  r = hex.substring(1, 3).toUpperCase().toString();
+  g = hex.substring(3, 5).toUpperCase().toString();
+  b = hex.substring(5).toUpperCase().toString();
 
   r = parseInt(r, 16);
   g = parseInt(g, 16);
   b = parseInt(b, 16);
 
-  console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
+  convertRGBStringToRGB(r, g, b);
 
   let rgbObj = { r, g, b };
-  rgbValue.textContent = `rgb(${rgbObj.r}, ${rgbObj.g}, ${rgbObj.b})`;
-}
-
-function hexToRGB(hexValue) {
-  //   console.log("hexToRGB");
-  console.log(hexValue);
-
-  r = hexValue.substring(1, 3).toString();
-  g = hexValue.substring(3, 5).toString();
-  b = hexValue.substring(5).toString();
-
-  console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
-
-  r = parseInt(r, 16);
-  g = parseInt(g, 16);
-  b = parseInt(b, 16);
-
-  console.log(`{r: ${r}, g: ${g}, b: ${b}}`);
-
-  let rgbObj = { r, g, b };
-  rgbValue.textContent = `rgb(${rgbObj.r}, ${rgbObj.g}, ${rgbObj.b})`;
 
   rgbToHSL(rgbObj);
+
+  return rgbObj;
+}
+
+function convertRGBStringToRGB(r, g, b) {
+  // console.log(`convertRGBStringToRGB`);
+  // console.log(r, g, b);
+  let rgbCSS = `rgb(${r}, ${g}, ${b})`;
+
+  showRGB(rgbCSS);
+  return rgbCSS;
 }
 
 function rgbToHSL(rgbObj) {
-  console.log("rgbToHSL");
+  // console.log("rgbToHSL");
 
   let r = rgbObj.r;
   let g = rgbObj.g;
@@ -128,7 +132,7 @@ function rgbToHSL(rgbObj) {
   s *= 100;
   l *= 100;
 
-  console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
+  // console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
   //   *** end pasted code
 
   h = h.toFixed(0);
@@ -136,7 +140,26 @@ function rgbToHSL(rgbObj) {
   l = l.toFixed(0);
 
   let hslObj = { h, s, l };
-  console.log(hslObj);
 
+  showHSL(hslObj);
+  return hslObj;
+}
+
+// *** VIEW
+
+function displayColorInColorBox(hex) {
+  colorBox.style.backgroundColor = hex;
+  h1.style.color = hex;
+}
+
+function showHex(hex) {
+  hexValue.textContent = hex.toUpperCase();
+}
+
+function showRGB(rgbCSS) {
+  rgbValue.textContent = rgbCSS;
+}
+
+function showHSL(hslObj) {
   hslValue.textContent = "hsl: " + hslObj.h + "° " + hslObj.s + "% " + hslObj.l + "%";
 }
